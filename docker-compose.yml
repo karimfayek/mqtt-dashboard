@@ -41,6 +41,7 @@ services:
       - "5173:5173"
     networks:
       - app-net
+      
   postgres:
     image: postgres:15
     container_name: pg-mqtt
@@ -54,8 +55,10 @@ services:
     ports:
       - "5432:5432"
     networks:
-      - app-net 
+      - app-net      
 
 networks:
   app-net:
     driver: bridge
+volumes:
+  pgdata:
