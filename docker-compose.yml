@@ -41,6 +41,20 @@ services:
       - "5173:5173"
     networks:
       - app-net
+  postgres:
+    image: postgres:15
+    container_name: pg-mqtt
+    environment:
+      POSTGRES_USER: mqtt_user
+      POSTGRES_PASSWORD: secret123
+      POSTGRES_DB: mqtt_db
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+    networks:
+      - app-net 
 
 networks:
   app-net:
